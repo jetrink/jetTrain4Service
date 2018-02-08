@@ -1,0 +1,90 @@
+plugins {
+    id "com.moowork.node" version "1.2.0"
+}
+
+node {
+    download = false
+    workDir = file("frontend")
+    nodeModulesDir = file("frontend")
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+group = "edu.utdallas.utdesign"
+version = "0.1"
+mainClassName = "edu.utdallas.utdesign.teach4service.T4SApplication"
+
+repositories {
+	jcenter()
+}
+
+// enforce java 8
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+[compileJava, compileTestJava].each { task ->
+
+    // UTF-8 all the things
+    task.options.encoding = 'UTF-8'
+}
+
+dependencies {
+    // dropwizard core
+    compile 'io.dropwizard:dropwizard-core:1.1.4'
+    compile 'io.dropwizard:dropwizard-hibernate:1.1.4'
+    compile 'io.dropwizard:dropwizard-auth:1.1.4'
+    compile 'io.dropwizard:dropwizard-assets:1.1.4'
+
+    // JDBC driver
+    compile 'org.mariadb.jdbc:mariadb-java-client:2.1.1'
+
+    // DB migrations
+    compile 'io.dropwizard.modules:dropwizard-flyway:1.1.0-1'
+
+    // becuase lombok is awesome
+    compileOnly 'org.projectlombok:lombok:1.16.18'
+
+    // auth & encryption
+    compile 'com.auth0:java-jwt:3.2.0'
+    compile 'org.mindrot:jbcrypt:0.4'
+
+    // opentok video calls
+    compile('com.tokbox:opentok-server-sdk:2.3.2') {
+        exclude group: "com.fasterxml.jackson.core"
+    }
+
+    // tests??
+    //testCompile 'junit:junit:4.12'
+}
+
+task buildFrontend(type: NpmTask) {
+    inputs.files(fileTree('frontend/node_modules'))
+    inputs.files(fileTree('frontend/src'))
+    inputs.file('frontend/package.json')
+    inputs.file('frontend/webpack.config.js')
+
+    outputs.dir('frontend/dist')
+
+    workingDir = file('frontend')
+
+    dependsOn "npm_install"
+    args = ['run', 'build']
+}
+
+clean {
+    delete "frontend/dist"
+}
+
+processResources {
+    inputs.dir("frontend/dist")
+    dependsOn buildFrontend // defined above
+    from "frontend/dist"
+}
+
+// `gradle run` to run the dropwizard and host the REST API
+run {
+    args "server", "config.yml"
+}
+
+distributions.main.contents.from 'config.yml'

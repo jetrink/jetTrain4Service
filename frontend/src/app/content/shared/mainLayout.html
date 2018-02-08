@@ -1,0 +1,158 @@
+<div class="wrapper">
+    <div class="sidebar" data-color="red" data-image="">
+        <!--
+    Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+    Tip 2: you can also add an image using data-image tag.
+-->
+        <div class="logo">
+            <a class="simple-text">
+                <img src="./logo-dark.png" height="100" width="200" title="T4S logo"/>
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                <li ng-class="{active: ('app.account.profile' | includedByState)}">
+                    <a ui-sref="app.account.profile.list">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <p>Profile</p>
+                    </a>
+                </li>
+                <li ng-if="showTabs.student" ng-class="{active: ('app.account.student' | includedByState)}">
+                    <a ui-sref="app.account.student.dashboard">
+                        <p>Student <i class="fa fa-caret-down" aria-hidden="true"></i></p>
+                    </a>
+                </li>
+                <div ng-if="'app.account.student' | includedByState">
+                    <div style="padding-left: 17%;" class="subtab">
+                        <li style="padding-bottom: 3%;" ui-sref-active="active">
+                            <a ui-sref="app.account.student.dashboard">
+                                <p>Dashboard <i class="fa fa-home" aria-hidden="true"></i></p>
+                            </a>
+                        </li>
+                        <li style="padding-bottom: 3%;"
+                            ng-class="{active:(('app.account.student.findTutor'|includedByState)||('app.account.student.registerTutor'|includedByState))}">
+                            <a ui-sref="app.account.student.findTutor">
+                                <p>Find Tutor <i class="fa fa-search" aria-hidden="true"></i></p>
+                            </a>
+                        </li>
+                        <li style="padding-bottom: 3%;" ui-sref-active="active">
+                            <a ui-sref="app.account.student.requests">
+                                <p>Requests <i class="fa fa-list" aria-hidden="true"></i></p>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.account.student.sessionHistory">
+                                <p>Session History <i class="fa fa-history" aria-hidden="true"></i></p>
+                            </a>
+                        </li>
+                    </div>
+                </div>
+
+                <li ng-if="showTabs.tutor" ng-class="{active: ('app.account.tutor' | includedByState)}">
+                    <a ui-sref="app.account.tutor.dashboard">
+                        <p>Tutor <i class="fa fa-caret-down" aria-hidden="true"></i></p>
+                    </a>
+                </li>
+                <div ng-if="'app.account.tutor' | includedByState">
+                    <div style="padding-left: 17%" class="subtab">
+                        <li style="padding-bottom: 3%;" ui-sref-active="active">
+                            <a ui-sref="app.account.tutor.dashboard">
+                                <p>Dashboard <i class="fa fa-home" aria-hidden="true"></i></p>
+                            </a>
+                        </li>
+
+                        <li style="padding-bottom: 3%;" ui-sref-active="active">
+                            <a ui-sref="app.account.tutor.requests">
+                                <p>Requests <i class="fa fa-list" aria-hidden="true"></i></p>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.account.tutor.sessionhistory">
+                                <p>Session History <i class="fa fa-history" aria-hidden="true"></i></p>
+                            </a>
+                        </li>
+                    </div>
+                </div>
+
+                <li ng-if="showTabs.manager" ng-class="{active: ('app.account.manager' | includedByState)}">
+                    <a ui-sref="app.account.manager.dashboard">
+                        <p>Parent <i class="fa fa-caret-down" aria-hidden="true"></i></p>
+                    </a>
+                </li>
+                <div ng-if="'app.account.manager' | includedByState">
+                    <div style="padding-left: 17%;" class="subtab">
+                        <li style="padding-bottom: 3%;" ui-sref-active="active">
+                            <a ui-sref="app.account.manager.dashboard">
+                                <p>Dashboard <i class="fa fa-home" aria-hidden="true"></i></p>
+                            </a>
+                        </li>
+                        <li style="padding-bottom: 3%;" ui-sref-active="active">
+                            <a ui-sref="app.account.manager.findTutor">
+                                <p>Find Tutor <i class="fa fa-search" aria-hidden="true"></i></p>
+                            </a>
+                        </li>
+                        <li style="padding-bottom: 3%;" ui-sref-active="active">
+                            <a ui-sref="app.account.manager.requests">
+                                <p>Requests <i class="fa fa-list" aria-hidden="true"></i></p>
+                            </a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="app.account.manager.session">
+                                <p>Session History <i class="fa fa-history" aria-hidden="true"></i></p>
+                            </a>
+                        </li>
+                    </div>
+                </div>
+
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="main-panel">
+
+
+
+        <nav class="navbar navbar-transparent navbar-absolute">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div ng-if="'app.account.tutor' | includedByState">
+                        <md-switch ng-model="user.availability" aria-label="availability" ng-true-value="'Available'"
+                                   ng-false-value="'Not Available'" class="md-warn"
+                                   ng-change="setAvailability(user.availability)">
+                            {{ user.availability }}
+                        </md-switch>
+                    </div>
+
+                </div>
+                <div class="collapse  navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a>
+                                Welcome! {{userName}}
+                            </a>
+                        </li>
+                        <li ng-click="logout()">
+                            <a>
+                                <h7><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</h7>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="content">
+            <div class="container-fluid">
+                <h4 style="color: red" ng-hide="messge">Your tutor account is pending approval</h4>
+                <ui-view></ui-view>
+            </div>
+        </div>
+    </div>
+</div>

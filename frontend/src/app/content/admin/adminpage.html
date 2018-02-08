@@ -1,0 +1,201 @@
+<md-input-container>
+    <md-button type="button" class="md-raised md-primary" ng-click="logout()">Logout</md-button>
+</md-input-container>
+<md-card layout="row">
+
+    <md-card-content>
+        <div layout="row">
+            <md-input-container flex="100">
+                <label>Functionalities</label>
+                <md-select name="type" ng-model="function" required>
+                    <md-option value="subject">Manage Subjects</md-option>
+                    <md-option value="tutor">Manage Tutor</md-option>
+                    <md-option value="admin">Manage Admin Accounts</md-option>
+                </md-select>
+            </md-input-container>
+
+        </div>
+        <br>
+
+        <div layout="row" ng-if="function==='tutor'">
+            <div ng-show="tutors.length <= 0">No Tutors exist...</div>
+            <div ng-repeat="tutor in tutors" >
+                <md-input-container>
+                    <md-card >
+                        <md-card-content>
+                            <h8><b>Name:</b> {{tutor.person.firstName}} {{tutor.person.lastName}}</h8><br>
+                            <h8><b>Date of Birth:</b> {{tutor.person.dateOfBirth}}</h8><br>
+                            <h8><b>Address:</b> {{tutor.person.streetAddress}} {{tutor.person.city}} {{tutor.person.state}} {{tutor.person.country}} {{tutor.person.postalCode}}</h8><br>
+                            <h8><b>Years of Experience:</b> {{tutor.expYears}}</h8><br>
+                            <h8><b>Expertise:</b></h8><br>
+                            <div ng-repeat="e in tutor.expertise">
+                                <h7>{{e.field}} {{e.name}}</h7><br>
+                            </div>
+                            <div layout="row">
+                                <md-input-container flex="50">
+                                    <md-button class="md-raised md-primary" type="button" ng-click="approve(tutor.id)">Approve</md-button>
+                                </md-input-container><md-input-container flex="50">
+                                <md-button class="md-raised md-warn" type="button" ng-click="deny(tutor.id)">Decline</md-button>
+                            </md-input-container>
+                            </div>
+                        </md-card-content>
+                    </md-card>
+                </md-input-container>
+            </div>
+
+        </div>
+
+        <div ng-if="function =='admin'">
+            <div layout="row">
+                <form ng-submit="create()">
+                    <div layout="row">
+                        <md-input-container flex="100">
+                            <label>username</label>
+                            <input type="text" ng-model="admin.username">
+                        </md-input-container>
+                        <md-input-container flex="100">
+                        <label>email</label>
+                        <input type="email" ng-model="admin.email">
+                    </md-input-container>
+                        <md-input-container flex="100">
+                            <label>password</label>
+                            <input type="password" ng-model="admin.password"minlength="8">
+                        </md-input-container>
+                        <md-input-container flex="100">
+                            <md-button class="md-raised md-primary" type="submit">create admin</md-button>
+                        </md-input-container>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div layout="row">
+                <form ng-submit="delete(selectedAdmin)">
+                    <div layout="row">
+                        <md-input-container>
+                            <label>Select an admin to edit</label>
+                            <md-select name="type" ng-model="selectedAdmin" required>
+                                <md-option ng-value="a.id" ng-repeat="a in admins">{{a.username}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container >
+                            <md-button class="md-raised md-primary" type="submit">delete admin</md-button>
+                        </md-input-container>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+        <div ng-if="function =='subject'">
+            <div layout="row">
+                <form ng-submit="createSubject()">
+                    <div layout="row">
+                        <md-input-container flex="100">
+                            <md-select ng-model="sub.field" required>
+                                <label>Field</label>
+                                <md-option ng-value="'MATH'">Math</md-option>
+                                <md-option ng-value="'SCIENCE'">Science</md-option>
+                                <md-option ng-value="'LANGUAGE'">Language</md-option>
+                                <md-option ng-value="'ART'">Art</md-option>
+                                <md-option ng-value="'SOCIAL'">Social</md-option>
+                                <md-option ng-value="'OTHER'">Other</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container flex="100">
+                            <label>Name</label>
+                            <input type="text" ng-model="sub.name" required>
+                        </md-input-container>
+                        <md-input-container flex="100">
+                            <label>Description</label>
+                            <input type="text" ng-model="sub.description" required>
+                        </md-input-container>
+                        <md-input-container flex="100">
+                            <md-button class="md-raised md-primary" type="submit">create subject</md-button>
+                        </md-input-container>
+                    </div>
+
+                </form>
+
+            </div>
+            <div layout="row">
+                <form ng-submit="editSubject(selectedSub.id)">
+                    <div layout="row">
+                        <md-input-container>
+                            <label>Select subject to edit</label>
+                            <md-select name="type" ng-model="selectedSub" ng-change="toEditSubjectSelected(selectedSub)" required )>
+                                <md-option ng-value="s" ng-repeat="s in subjects">{{s.name}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex="100">
+                            <md-select ng-model="editSub.field" required>
+                                <label>Field</label>
+                                <md-option ng-value="'MATH'">Math</md-option>
+                                <md-option ng-value="'SCIENCE'">Science</md-option>
+                                <md-option ng-value="'LANGUAGE'">Language</md-option>
+                                <md-option ng-value="'ART'">Art</md-option>
+                                <md-option ng-value="'SOCIAL'">Social</md-option>
+                                <md-option ng-value="'OTHER'">Other</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container flex="100">
+                            <label>Name</label>
+                            <input type="text" ng-model="editSub.name" required>
+                        </md-input-container>
+                        <md-input-container flex="100">
+                            <label>Description</label>
+                            <input type="text" ng-model="editSub.description" required>
+                        </md-input-container>
+                        <md-input-container flex="100">
+                            <md-button class="md-raised md-primary" type="submit">edit subject</md-button>
+                        </md-input-container>
+                    </div>
+
+                </form>
+
+            </div>
+            <div layout="row">
+                <form ng-submit="deleteSub(deletedSub)">
+                    <div layout="row">
+                        <md-input-container>
+                            <label>Select subject to delete</label>
+                            <md-select name="type" ng-model="deletedSub" required>
+                                <md-option ng-value="s" ng-repeat="s in subjects">{{s.name}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container >
+                            <md-button class="md-raised md-warn" type="submit">delete subject</md-button>
+                        </md-input-container>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </md-card-content>
+</md-card>

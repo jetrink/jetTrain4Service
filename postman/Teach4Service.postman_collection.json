@@ -1,0 +1,1928 @@
+{
+	"info": {
+		"name": "Teach4Service",
+		"_postman_id": "e94385b3-9218-daf3-b10c-9378e79aaaf1",
+		"description": "UTD senior design thing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/users",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"CSRF\", pm.response.headers.get(\"X-CSRF\"));"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"hey\",\n\t\"password\": \"123\"\n}"
+						},
+						"url": {
+							"raw": "{{rest}}/api/users/login",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"postman.setEnvironmentVariable(\"CSRF\", pm.response.headers.get(\"X-CSRF\"));"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"SomeUsername\",\n\t\"email\": \"MyEmail@gmail.com\",\n\t\"password\": \"MyPassword\"\n}"
+						},
+						"url": {
+							"raw": "{{rest}}/api/users/signup",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "CSRF token",
+								"key": "X-CSRF",
+								"value": "{{CSRF}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{rest}}/api/users/logout",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "CSRF token",
+								"key": "X-CSRF",
+								"value": "{{CSRF}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{rest}}/api/users/:id",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user self",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "CSRF token",
+								"key": "X-CSRF",
+								"value": "{{CSRF}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{rest}}/api/users/self",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"self"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check username",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "CSRF token",
+								"key": "X-CSRF",
+								"value": "{{CSRF}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{rest}}/api/users/checkUsername?username=SomeUsername",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"checkUsername"
+							],
+							"query": [
+								{
+									"equals": true,
+									"key": "username",
+									"value": "SomeUsername"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/profiles",
+			"item": [
+				{
+					"name": "student profile setup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"description": "CSRF token",
+								"key": "X-CSRF",
+								"value": "{{CSRF}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\": \"Jane\",\n\t\"lastName\": \"Doe\",\n\t\"dateOfBirth\": \"2017-10-27\",\n\t\"streetAddress\": \"111 example st\",\n\t\"city\": \"Dallas\",\n\t\"state\": \"TX\",\n\t\"country\": \"USA\",\n\t\"postalCode\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{rest}}/api/profiles/studentsetup",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"profiles",
+								"studentsetup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tutor profile setup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CSRF",
+								"value": "{{CSRF}}",
+								"description": "CSRF token"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\": \"Sarah\",\n\t\"lastName\": \"Jane\",\n\t\"dateOfBirth\": \"2017-10-27\",\n\t\"streetAddress\": \"111 food st\",\n\t\"city\": \"Richardson\",\n\t\"state\": \"TX\",\n\t\"country\": \"USA\",\n\t\"postalCode\": \"456789\",\n\t\"expYears\":\"2\",\n\t\"expertise\":[\"1\",\"2\"]\n}"
+						},
+						"url": {
+							"raw": "{{rest}}/api/profiles/tutorsetup",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"profiles",
+								"tutorsetup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "manager profile setup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CSRF",
+								"value": "{{CSRF}}",
+								"description": "CSRF token"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\": \"Sarah\",\n\t\"lastName\": \"Doe\",\n\t\"dateOfBirth\": \"2017-10-27\",\n\t\"streetAddress\": \"11 test st\",\n\t\"city\": \"Dallas\",\n\t\"state\": \"TX\",\n\t\"country\": \"USA\",\n\t\"postalCode\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{rest}}/api/profiles/managersetup",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"profiles",
+								"managersetup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "subjects per field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CSRF",
+								"value": "{{CSRF}}",
+								"description": "CSRF token"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{rest}}/api/profiles/subjects/:field",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"profiles",
+								"subjects",
+								":field"
+							],
+							"variable": [
+								{
+									"key": "field",
+									"value": "math"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all subjects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CSRF",
+								"value": "{{CSRF}}",
+								"description": "CSRF token"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{rest}}/api/profiles/subjects",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"profiles",
+								"subjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Student Profile Put",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-CSRF",
+								"value": "{{CSRF}}",
+								"description": "CSRF token"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"gradeLevel\":6,\n\t\"firstName\":\"Steve\",\n\t\"lastName\":\"Smith\",\n\t\"streetAddress\": \"123 newplace\",\n\t\"city\": \"notDallas\",\n\t\"state\":\"notTx\",\n\t\"country\":\"canada\",\n\t\"postalCode\":\"654321\",\n\t\"dateOfBirth\":\"2007-10-26\"\n}"
+						},
+						"url": {
+							"raw": "{{rest}}/api/profiles/student",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"profiles",
+								"student"
+							]
+						},
+						"description": "Endpoint for updating a student profile"
+					},
+					"response": []
+				},
+				{
+					"name": "Tutor Profile Get",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "CSRF token",
+								"key": "X-CSRF",
+								"value": "{{CSRF}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{rest}}/api/profiles/tutor",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"profiles",
+								"tutor"
+							]
+						},
+						"description": "Endpoint for retreveing the tutor profile info"
+					},
+					"response": []
+				},
+				{
+					"name": "Tutor Profile Put",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-CSRF",
+								"value": "{{CSRF}}",
+								"description": "CSRF token"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"expYears\":6,\n\t\"firstName\":\"Steve\",\n\t\"lastName\":\"Smith\",\n\t\"streetAddress\": \"123 newplace\",\n\t\"city\": \"notDallas\",\n\t\"state\":\"notTx\",\n\t\"country\":\"canada\",\n\t\"postalCode\":\"654321\",\n\t\"dateOfBirth\":\"2007-10-26\",\n\t\"schedule\":[{\"day\":\"FRIDAY\",\n\t\t\t\t \"time\":\"ANY\"}],\n}\n"
+						},
+						"url": {
+							"raw": "{{rest}}/api/profiles/tutor",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"profiles",
+								"tutor"
+							]
+						},
+						"description": "Endpoint for editing the tutor profile"
+					},
+					"response": []
+				},
+				{
+					"name": "Student Profile Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{rest}}/api/profiles/student",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"profiles",
+								"student"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/sessions",
+			"item": [
+				{
+					"name": "student session(self)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "CSRF token",
+								"key": "X-CSRF",
+								"value": "{{CSRF}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{rest}}/api/sessions/self/studenthistory",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"self",
+								"studenthistory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "student session requests (self)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CSRF",
+								"value": "{{CSRF}}",
+								"description": "CSRF token"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{rest}}/api/sessions/students/requests/self",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"students",
+								"requests",
+								"self"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tutor session(self)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "CSRF token",
+								"key": "X-CSRF",
+								"value": "{{CSRF}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{rest}}/api/sessions/self/tutorhistory",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"self",
+								"tutorhistory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tutor session requests (self)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CSRF",
+								"value": "{{CSRF}}",
+								"description": "CSRF token"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{rest}}/api/sessions/tutors/requests/self",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"tutors",
+								"requests",
+								"self"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "managed student session",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "CSRF token",
+								"key": "X-CSRF",
+								"value": "{{CSRF}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{rest}}/api/sessions/students/:studentId",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"students",
+								":studentId"
+							],
+							"variable": [
+								{
+									"key": "studentId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "managed student session requests",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CSRF",
+								"value": "{{CSRF}}",
+								"description": "CSRF token"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{rest}}/api/sessions/students/requests/:studentId",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"students",
+								"requests",
+								":studentId"
+							],
+							"variable": [
+								{
+									"key": "studentId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tutor subject",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CSRF",
+								"value": "{{CSRF}}",
+								"description": "CSRF token"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{rest}}/api/sessions/students/requests/:studentId",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"students",
+								"requests",
+								":studentId"
+							],
+							"variable": [
+								{
+									"key": "studentId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "respond to session request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CSRF",
+								"value": "{{CSRF}}",
+								"description": "CSRF token"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"requestId\": \"1\",\n\t\"status\": \"Approve\"\n}"
+						},
+						"url": {
+							"raw": "{{rest}}/api/sessions/requests/respond",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"requests",
+								"respond"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find tutor by username",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CSRF",
+								"value": "{{CSRF}}",
+								"description": "CSRF token"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"someusername\"\n}"
+						},
+						"url": {
+							"raw": "{{rest}}/api/sessions/findtutor/bytutor",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"findtutor",
+								"bytutor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find tutor by subject",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CSRF",
+								"value": "{{CSRF}}",
+								"description": "CSRF token"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"subjectId\": \"1\"\n}"
+						},
+						"url": {
+							"raw": "{{rest}}/api/sessions/findtutor/bysubject",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"findtutor",
+								"bysubject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register session with tutor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let csrf = pm.response.headers.get(\"X-CSRF\");",
+									"if (csrf) {",
+									"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CSRF",
+								"value": "{{CSRF}}",
+								"description": "CSRF token"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"someusername\",\n\t\"subjectId\": \"1\",\n\t\"date\":\"2017-11-12T07:00:54.04Z\"\n}"
+						},
+						"url": {
+							"raw": "{{rest}}/api/sessions/register",
+							"host": [
+								"{{rest}}"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/Dashboard",
+			"description": "",
+			"item": [
+				{
+					"name": "Parent Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "CSRF token",
+								"key": "X-CSRF",
+								"value": "{{CSRF}}"
+							},
+						],
+						"body": {},
+						"url": {
+							"raw": ""
+						},
+						"description": "getting the parent dashboard"
+					},
+					"response": []
+				},
+				{
+					"name": "Student Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "CSRF token",
+								"key": "X-CSRF",
+								"value": "{{CSRF}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Tutor Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "CSRF token",
+								"key": "X-CSRF",
+								"value": "{{CSRF}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "TutorOnline",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "CSRF token",
+								"key": "X-CSRF",
+								"value": "{{CSRF}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": ""
+						},
+						"description": "Updating the online status of the tutor"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/admin",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "/login (system)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"postman.setEnvironmentVariable(\"CSRF\", pm.response.headers.get(\"X-CSRF\"));"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"System\",\n  \"password\": \"someAdminPassword\"\n}"
+								},
+								"url": {
+									"raw": "{{rest}}/api/admin/auth/login",
+									"host": [
+										"{{rest}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"postman.setEnvironmentVariable(\"CSRF\", pm.response.headers.get(\"X-CSRF\"));"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"SomeUsername\",\n  \"password\": \"MyPassword\"\n}"
+								},
+								"url": {
+									"raw": "{{rest}}/api/admin/auth/login",
+									"host": [
+										"{{rest}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-CSRF",
+										"value": "{{CSRF}}",
+										"description": "CSRF token"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{rest}}/api/admin/auth/logout",
+									"host": [
+										"{{rest}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "accounts",
+					"item": [
+						{
+							"name": "all admins",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"let csrf = pm.response.headers.get(\"X-CSRF\");",
+											"if (csrf) {",
+											"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+											"}"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-CSRF",
+										"value": "{{CSRF}}",
+										"description": "CSRF token"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{rest}}/api/admin/accounts",
+									"host": [
+										"{{rest}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"accounts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "admin self",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"let csrf = pm.response.headers.get(\"X-CSRF\");",
+											"if (csrf) {",
+											"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+											"}"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-CSRF",
+										"value": "{{CSRF}}",
+										"description": "CSRF token"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{rest}}/api/admin/accounts/self",
+									"host": [
+										"{{rest}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"accounts",
+										"self"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "admin by ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"let csrf = pm.response.headers.get(\"X-CSRF\");",
+											"if (csrf) {",
+											"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+											"}"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-CSRF",
+										"value": "{{CSRF}}",
+										"description": "CSRF token"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{rest}}/api/admin/accounts/:id",
+									"host": [
+										"{{rest}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"accounts",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create admin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"let csrf = pm.response.headers.get(\"X-CSRF\");",
+											"if (csrf) {",
+											"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+											"}"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-CSRF",
+										"value": "{{CSRF}}",
+										"description": "CSRF token"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"SomeUsername\",\n  \"email\": \"MyEmail@gmail.com\",\n  \"password\": \"MyPassword\"\n}"
+								},
+								"url": {
+									"raw": "{{rest}}/api/admin/accounts",
+									"host": [
+										"{{rest}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"accounts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edit admin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"let csrf = pm.response.headers.get(\"X-CSRF\");",
+											"if (csrf) {",
+											"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+											"}"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-CSRF",
+										"value": "{{CSRF}}",
+										"description": "CSRF token"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"updateEmail\": false,\n  \"email\": \"MyEmail@gmail.com\",\n  \"updatePassword\": false,\n  \"password\": \"MyPassword\"\n}"
+								},
+								"url": {
+									"raw": "{{rest}}/api/admin/accounts/:id",
+									"host": [
+										"{{rest}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"accounts",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete admin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"let csrf = pm.response.headers.get(\"X-CSRF\");",
+											"if (csrf) {",
+											"    postman.setEnvironmentVariable(\"CSRF\", csrf);",
+											"}"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-CSRF",
+										"value": "{{CSRF}}",
+										"description": "CSRF token"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{rest}}/api/admin/accounts/:id",
+									"host": [
+										"{{rest}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"accounts",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Subjects",
+					"description": "Creating / editing/ deleting subjects",
+					"item": [
+						{
+							"name": "Get Subjects",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-CSRF",
+										"value": "{{CSRF}}",
+										"description": "CSRF token"
+									},
+									{
+										"key": "",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{rest}}/api/admin/subjects",
+									"host": [
+										"{{rest}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"subjects"
+									]
+								},
+								"description": "Get all subjects"
+							},
+							"response": []
+						},
+						{
+							"name": "create subject",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-CSRF",
+										"value": "{{CSRF}}",
+										"description": "CSRF token"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\n        \"field\": \"SCIENCE\",\n        \"name\": \"Physics\",\n        \"description\": \"test42\"\n    }"
+								},
+								"url": {
+									"raw": "{{rest}}/api/admin/subjects",
+									"host": [
+										"{{rest}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"subjects"
+									]
+								},
+								"description": "Create a new subject"
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Subject",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-CSRF",
+										"value": "{{CSRF}}",
+										"description": "CSRF token"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\n        \"field\": \"SCIENCE\",\n        \"name\": \"Physics\",\n        \"description\": \"test42\"\n    }"
+								},
+								"url": {
+									"raw": "{{rest}}/api/admin/subjects/:id",
+									"host": [
+										"{{rest}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"subjects",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								},
+								"description": "Editing an existing subject by ID and updated values"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Subject",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "X-CSRF",
+										"value": "{{CSRF}}",
+										"description": "CSRF token"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\n        \"field\": \"SCIENCE\",\n        \"name\": \"Physics\",\n        \"description\": \"test42\"\n    }"
+								},
+								"url": {
+									"raw": "{{rest}}/api/admin/subjects/:id",
+									"host": [
+										"{{rest}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"subjects",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								},
+								"description": "Delete an existing subject by ID "
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Tutors",
+					"description": "Authorizing tutors",
+					"item": [
+						{
+							"name": "GetTutors",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-CSRF",
+										"value": "{{CSRF}}",
+										"description": "CSRF token"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{rest}}/api/admin/tutors?approved=true",
+									"host": [
+										"{{rest}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"tutors"
+									],
+									"query": [
+										{
+											"key": "approved",
+											"value": "true",
+											"equals": true
+										}
+									]
+								},
+								"description": "Get the current tutors"
+							},
+							"response": []
+						},
+						{
+							"name": "Aprove Tutor",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-CSRF",
+										"value": "{{CSRF}}",
+										"description": "CSRF token"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{rest}}/api/admin/tutors/:id/approve",
+									"host": [
+										"{{rest}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"tutors",
+										":id",
+										"approve"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								},
+								"description": "approving the tutor"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		}
+	]
+}

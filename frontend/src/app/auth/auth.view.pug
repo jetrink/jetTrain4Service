@@ -1,0 +1,58 @@
+.login-container(layout="row" layout-align="center center" layout-padding="space-around")
+	.login-box(md-whiteframe='3')
+		md-tabs(md-stretch-tabs="always" md-dynamic-height md-center-tabs)
+
+			md-tab(label='Log in')
+				form(layout="column", ng-submit="loginUser()" name="loginForm", novalidate)
+					md-input-container.md-block
+						label Username
+						input(type='text', name='username', ng-model='login.user', required)
+						div(ng-messages="loginForm.username.$error")
+							div(ng-message="required") Required
+					md-input-container.md-block
+						label Password
+						input(type='password', name='password', ng-model='login.password', required)
+						div(ng-messages="signUpForm.password.$error")
+							div(ng-message="required") Required
+					div(layout="row" layout-align="center")
+						md-input-container.md-block
+							md-button.md-raised.md-primary(aria-label="submit", type="submit", ng-disabled="loginForm.$invalid") Login
+
+			md-tab(label='Sign up')
+				form(layout="column", ng-submit="signUp()", name="signUpForm", novalidate)
+					md-input-container.md-block
+						label Username
+						input(type='text', name='username', ng-model='signup.user', required)
+						div(ng-messages="signUpForm.username.$error")
+							div(ng-message="required") Required
+					div(layout="row" layout-xs="column" layout-padding="space-around")
+						md-input-container.md-block
+							label E-Mail
+							input(type='email', name='email', ng-model='signup.email', required)
+							div(ng-messages="signUpForm.email.$error")
+								div(ng-message="required") Required
+								div(ng-message="email") Must be a valid email
+						md-input-container.md-block
+							label Confirm
+							input(type='email', name='confirmEmail', ng-model='signup.confirmEmail', required)
+							div(ng-messages="signUpForm.confirmEmail.$error")
+								div(ng-message="required") Required
+								div(ng-message="email") Must be a valid email
+					div(layout="row" layout-xs="column" layout-padding="space-around")
+						md-input-container.md-block
+							label Password
+							input(type='password', name='password', ng-model='signup.pass', minlength=8, required)
+							div(ng-messages="signUpForm.password.$error")
+								div(ng-message="required")
+								div(ng-message="minlength") Must be a longer than 8 characters
+						md-input-container.md-block
+							label Confirm
+							input(type='password', name='confirmPassword', ng-model='signup.confirmPass', minlength=8, required)
+							div(ng-messages="signUpForm.confirmPassword.$error")
+								div(ng-message="required") Required
+								div(ng-message="minlength") Must be a longer than 8 characters
+					div(layout="row" layout-align="center")
+						md-input-container.md-block
+							md-button.md-raised.md-primary(aria-label="submit", type="submit", ng-disabled="signUpForm.$invalid") Sign Up
+
+

@@ -1,0 +1,63 @@
+<div class="card">
+    <div class="card-header" data-background-color="blue">
+        <h4 class="title"><i class="fa fa-calendar" aria-hidden="true"></i>
+            My Pending Requests</h4>
+    </div>
+    <div class="card-content table-responsive">
+        <h4>{{errorMsg}}</h4>
+        <table class="table table-responsive">
+            <thead class="text-primary">
+                <th>Request Submission Date</th>
+                <th>Student Username</th>
+                <th>Subject</th>
+                <th>Session Time</th>
+            </thead>
+            <tbody ng-repeat="sr in tutorSessionRequests.pending">
+                <tr>
+                    <td>{{sr.requestDate}}</td>
+                    <td>{{sr.studentUsername}}</td>
+                    <td>{{sr.subject}}</td>
+                    <td>{{sr.time}}</td>
+                    <td class="td-actions text-right">
+                        <button type="button" rel="tooltip" title="Decline" class="btn btn-danger btn-simple btn-xs"
+                                style="margin-right: 20%" ng-click="decline(sr.requestId)">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+
+                        <button type="button" rel="tooltip" title="Approve" class="btn btn-success btn-simple btn-xs" ng-click="approve(sr.requestId)">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header" data-background-color="blue">
+        <h4 class="title"><i class="fa fa-calendar" aria-hidden="true"></i>
+            Responded Requests</h4>
+    </div>
+    <div class="card-content table-responsive">
+        <h4>{{errorMsg}}</h4>
+        <table class="table table-responsive">
+            <thead class="text-primary">
+                <th>Request Submission Date</th>
+                <th>Student Username</th>
+                <th>Subject</th>
+                <th>Session Time</th>
+            <th>Status</th>
+            </thead>
+            <tbody ng-repeat="sr in tutorSessionRequests.req">
+                <tr>
+                    <td>{{sr.requestDate}}</td>
+                    <td>{{sr.studentUsername}}</td>
+                    <td>{{sr.subject}}</td>
+                    <td>{{sr.time}}</td>
+                    <td>{{sr.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

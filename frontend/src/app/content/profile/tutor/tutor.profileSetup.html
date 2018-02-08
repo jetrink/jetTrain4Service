@@ -1,0 +1,129 @@
+<div class="col-md-2"></div>
+
+<div class="col-md-8">
+    <form ng-submit="complete()">
+        <div layout="row">
+            <md-input-container flex="33">
+                <label>First Name</label>
+                <input type="text" ng-model="tutor.firstName" required>
+            </md-input-container>
+            <md-input-container flex="33">
+                <label>Last Name</label>
+                <input type="text" ng-model="tutor.lastName" required>
+            </md-input-container>
+            <md-input-container flex="33">
+                <label>Date of Birth</label>
+                <md-datepicker md-placeholder="Date of Birth"
+                               ng-model="tutor.dateOfBirth" md-min-date="minDate" md-max-date="maxDate"
+                               required></md-datepicker>
+            </md-input-container>
+        </div>
+        <div layout="row">
+            <md-input-container flex="100">
+                <label>Street Address</label>
+                <input type="text" ng-model="tutor.streetAddress" required>
+            </md-input-container>
+
+
+        </div>
+        <div layout="row">
+
+            <md-input-container flex="25">
+                <select class="form-control" ng-model="tutor.country" pvp-country-picker="name" required>
+                    <option value="">Select country</option>
+                </select>
+            </md-input-container>
+            <md-input-container flex="25">
+                <select class="form-control" ng-model="tutor.state"  required>
+                    <option value="">Select state</option>
+                    <option value="{{s}}" ng-repeat="s in states">{{s}}</option>
+                </select>
+            </md-input-container>
+            <md-input-container flex="25">
+                <label>City</label>
+                <input type="text" ng-model="tutor.city" required>
+            </md-input-container>
+            <md-input-container flex="25">
+                <label>Postal Code</label>
+                <input type="text" ng-model="tutor.postalCode" minlength="5" maxlength="10" required>
+            </md-input-container>
+        </div>
+
+        <div class="row">
+            <div>
+                <div class="form-group label-floating">
+                    <input type="number" class="form-control" placeholder="Years of Experience" min="0" max="70"
+                           ng-model="tutor.expYears" required>
+                </div>
+            </div>
+        </div>
+
+        <h4>My Schedule</h4>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>select</th>
+                <th>Day</th>
+                <th>Time </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in schedules">
+                <td ><input type="checkbox" ng-model="x.selected"></td>
+                <td ng-model="x.day">{{x.day}}</td>
+                <td class="form-inline"><input class="form-control" type="time" ng-model="x.start" >
+
+                </input>
+                    <input class="form-control" type="time" ng-model="x.end">
+                    </input>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <h5>Setup Tutor Expertise
+
+        </h5>
+        <div class="row">
+            <table class="table">
+                <tbody>
+                <tr ng-repeat="e in tutor.expertise">
+
+                    <td><p style="color:red; cursor:pointer"><i class="fa fa-trash-o" aria-hidden="true"
+                                                                ng-click="remove(e)"></i></p></td>
+                    <td>{{e.field}}</td>
+                    <td>{{e.subject}}</td>
+                    <td>{{e.description}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 form-group">
+                <select class="form-control" ng-model="selectedField" ng-change="getFieldSubjects(selectedField.field)"
+                        ng-options="x.field for x in expertise.fields">
+                    <option value="">select subject field</option>
+                </select>
+            </div>
+            <div class="col-md-3 form-group">
+                <select class="form-control" ng-model="selectedSubject" ng-options="x.name for x in expertise.subjects">
+                    <option value="">select subject name</option>
+                </select>
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="text" class="form-control" placeholder="{{selectedSubject.description}}" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary pull-right" data-background-color="blue"
+                    ng-if="tutor.expertise.length > 0">Complete Tutor
+            </button>
+            </button>
+            <button type="button" class="btn btn-success pull-right" ng-click="addNew()" ng-disabled="selectedSubject == null">Add Expertise</button>
+        </div>
+    </form>
+</div>
+
+<div class="col-md-2"></div>

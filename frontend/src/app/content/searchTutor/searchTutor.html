@@ -1,0 +1,231 @@
+<div ng-show="search.showsearch">
+
+    <div class="card">
+        <div class="card-content">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group label-floating">
+                        <select class="form-control" ng-model="searchBy" ng-options="x for x in searchCriteria"
+                                required>
+                            <option value="">search by</option>
+                        </select>
+                    </div>
+                </div>
+                <form ng-if="searchBy == 'subject'" ng-submit="searchBySubject()">
+                    <div>
+                        <div class="col-md-3 form-group label-floating">
+                            <select class="form-control" ng-model="search.subject"
+                                    ng-options="x.name for x in expertise.subjects" required>
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <div layout-gt-xs="row">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success" data-background-color="green">
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form ng-if="searchBy == 'tutor name'" ng-submit="searchByName()">
+                    <div class="col-md-3">
+                        <div class="form-group label-floating">
+                            <input type="text" class="form-control" placeholder="tutor first name"
+                                   ng-model="search.tutorFirstName">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group label-floating">
+                            <input type="text" class="form-control" placeholder="tutor last name"
+                                   ng-model="search.tutorLastName">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div layout-gt-xs="row">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success" data-background-color="green">Search
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form ng-if="searchBy == 'tutor username'" ng-submit="searchByTutor()">
+                    <div class="col-md-3">
+                        <div class="form-group label-floating">
+                            <input type="text" class="form-control" placeholder="tutor username"
+                                   ng-model="search.tutorUsername" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div layout-gt-xs="row">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success" data-background-color="green">Search
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div ng-if="!hide">
+                <div class="row">
+                    <div class="col-md-9">
+                        <h6><b>Available Now!</b></h6>
+                        <table class="table table-striped table-responsive">
+                            <thead>
+                            <tr>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i> Username</th>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i> YearsOfExperience</th>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i> State</th>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i> Country</th>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i> Rating</th>
+
+                            </tr>
+                            </thead>
+                            <tbody ng-repeat="r in filters.availables | filter:textsearch" ng-click="goToTutorPage(r)"
+                                   style="cursor:pointer;">
+                            <tr>
+                                <td>{{r.username}}</td>
+                                <td>{{r.expYears}}</td>
+                                <td>{{r.state}}</td>
+                                <td>{{r.country}}</td>
+                                <td><i class="fa fa-star-o" aria-hidden="true"></i></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <h6><b>Tutor Results</b></h6>
+                        <table class="table table-striped table-responsive">
+                            <thead>
+                            <tr>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i> Username</th>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i> YearsOfExperience</th>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i> State</th>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i> Country</th>
+                                <th><i class="fa fa-sort" aria-hidden="true"></i> Rating</th>
+
+                            </tr>
+                            </thead>
+                            <tbody ng-repeat="r in filters.results | filter:textsearch" ng-click="goToTutorPage(r)"
+                                   style="cursor:pointer;">
+                            <tr>
+                                <td>{{r.username}}</td>
+                                <td>{{r.expYears}}</td>
+                                <td>{{r.state}}</td>
+                                <td>{{r.country}}</td>
+                                <td><i class="fa fa-star-o" aria-hidden="true"></i></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-3" style="padding-left: 10%; margin-top: 2%">
+                        <div class="row">
+                            <md-input-container>
+                                <label>text search in results</label>
+                                <input ng-model="textsearch">
+                            </md-input-container>
+                            <form>
+                                <p style="color: darkblue"><b>Filter Search Results</b></p>
+                                <div flex-gt-sm="50" ng-repeat="subject in expertise.subjects">
+                                    <md-checkbox aria-label="{{subject.name}}" ng-model="subject.selected">
+                                        {{subject.name}}
+                                    </md-checkbox>
+                                </div>
+
+                                <md-button class="md-raised md-primary" ng-click="filter()">apply filter</md-button>
+                                <a style="cursor:pointer;" ng-click="reset()">Reset filter</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-if="!search.showsearch">
+
+    <md-button class="md-raised" ng-click="search.showsearch = true">Go back to search</md-button>
+    <div class="card">
+        <div class="card-header" data-background-color="blue">
+            <h4 class="title"><i class="fa fa-calendar" aria-hidden="true"></i>
+                {{tutorUsername}}</h4>
+        </div>
+        <div class="card-content">
+            <div class="card-content">
+                <div class="col-md-6">
+                    <h4><b>FirstName:</b> {{tutor.profile.firstName}} {{tutor.profile.lastName}} </h4>
+                    <h4><b>City:</b> {{tutor.profile.city}}</h4>
+                    <h4><b>State:</b> {{tutor.profile.state}}</h4>
+                    <h4><b>Country:</b> {{tutor.profile.country}}</h4>
+                    <h4><b>Schedule:</b> </h4>
+                    <div>
+                        <h4 ng-repeat="t in tutor.schedule">{{t.dayAvailable}} {{t.timeAvailableDescription}}</h4>
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <div class="list-group" ng-repeat="r in tutor.reviews">
+                                <h6><i class="fa fa-user-circle-o" aria-hidden="true"></i> <b>Reviewer:</b>{{r.student.person.firstName}} {{r.student.person.lastName}}</h6>
+                                <p>Knowledge:{{r.knowledge}} out of 5</p>
+                                <p>Helpfulness:{{r.helpful}} out of 5</p>
+                                <p>Preparedness:{{r.prepared}} out of 5</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <div class="card">
+                <div class="card-content">
+                    <form ng-submit="register()">
+                        <div class="form-group label-floating">
+                            <div class="col-md-3">
+                                <div class="form-group label-floating">
+                                    <div>
+                                        <select class="form-control" ng-model="reg.subject"
+                                                ng-options="x.name for x in tutor.subjects" required>
+                                            <option value="">select subject</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div layout-gt-xs="row">
+                                    <div class="form-group">
+                                        <div flex-gt-xs>
+                                            <md-datepicker md-placeholder="date"
+                                                           ng-model="reg.date" required></md-datepicker>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group label-floating">
+                                    <div>
+                                        <select class="form-control" ng-model="reg.time"
+                                                ng-options="x.name for x in time" required>
+                                            <option value="">select time</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div layout-gt-xs="row">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success" data-background-color="green">
+                                            Register
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

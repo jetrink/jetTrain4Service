@@ -1,0 +1,59 @@
+<div class="card">
+    <div class="card-header" data-background-color="blue">
+        <h4 class="title"><i class="fa fa-calendar" aria-hidden="true"></i>
+            Today's Sessions</h4>
+    </div>
+    <div class="card-content table-responsive">
+        <table class="table table-responsive">
+            <thead class="text-primary">
+            <th>Subject</th>
+            <th>Student</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+
+            <th> <!-- for the enter session button --> </th>
+            </thead>
+            <tbody ng-repeat="s in tutor.sessions">
+            <tr>
+                <td>{{s.subject.name}}</td>
+                <td>{{s.student.person.firstName}} {{s.student.person.lastName}}</td>
+                <td>{{ (s.status === 'ENDED') ? s.endDateTime : s.startDateTime | date:'shortDate' }}</td>
+                <td>{{ (s.status === 'ENDED') ? s.endDateTime : s.startDateTime | date:'shortTime' }}</td>
+                <td>{{s.status}}</td>
+
+                <td class="td-actions text-right" ng-if="s.status !== 'ENDED'">
+                    <button ng-disabled="!canJoin(s)" rel="tooltip" title="Enter Session" class="btn btn-success" style="margin-right: 20%" ng-click="enter(s)">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i>
+                        Enter Session
+                    </button>
+                    <button rel="tooltip" title="Cancel Session" class="btn btn-danger" style="margin-right: 20%" ng-click="endSession(s)">
+                        <i class="fa fa-close" aria-hidden="true"></i>
+                        Cancel Session
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header" data-background-color="blue">
+        <h4 class="title"><i class="fa fa-star-half-o" aria-hidden="true"></i> Recent Reviews</h4>
+    </div>
+    <div class="card-content table-responsive">
+        <table class="table table-responsive">
+            <tbody ng-repeat="r in tutor.tutorReviews">
+            <tr>
+                <td>
+                    <h6><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{r.student.person.firstName}} {{r.student.person.lastName}}</h6>
+                    <p>Knowledge:{{r.knowledge}} out of 5</p>
+                    <p>Helpfulness:{{r.helpful}} out of 5</p>
+                    <p>Preparedness:{{r.prepared}} out of 5</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

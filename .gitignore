@@ -1,0 +1,20 @@
+# gradle stuff
+build
+.gradle
+
+# intellij idea stuff
+.idea
+*.ipr
+*.iws
+*.iml
+out
+
+# node js
+node_modules
+
+# stupid macs
+.DS_Store
+
+# project related
+config.yml
+

@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="card-header" data-background-color="blue">
+        <h4 class="title"><i class="fa fa-calendar" aria-hidden="true"></i>
+            My Session History</h4>
+    </div>
+    <div class="card-content table-responsive">
+        <table class="table table-responsive">
+            <thead class="text-primary">
+            <th>Tutor</th>
+            <th>Subject</th>
+            <th>StartTime</th>
+            <th>EndTime</th>
+            <th>Description</th>
+            </thead>
+            <tbody ng-repeat="d in data">
+            <tr>
+                <td>{{d.tutorUsername}}</td>
+                <td>{{d.subject}}</td>
+                <td>{{d.startDate.toLocaleString()}}</td>
+                <td>{{d.endDate.toLocaleString()}}</td>
+                <td>{{d.description}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

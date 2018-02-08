@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="card text-center">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs" data-background-color="blue">
+                <li ui-sref-active="active">
+                    <a ui-sref="app.profileSetup.student">Student</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="app.profileSetup.tutor">Tutor</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="app.profileSetup.manager">Parent</a>
+                </li>
+                <li class="navbar-right" ng-click="logout()">
+                    <a><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-block">
+            <h4 class="card-title">Setup Account Profile</h4>
+            <ui-view></ui-view>
+        </div>
+    </div>
+</div>

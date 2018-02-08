@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="card-header" data-background-color="blue">
+        <h4 class="title"><i class="fa fa-calendar" aria-hidden="true"></i>
+            My Requests</h4>
+    </div>
+    <div class="card-content table-responsive">
+        <h4>{{errorMsg}}</h4>
+        <table class="table table-responsive">
+            <thead class="text-primary">
+            <th>Request Submission Date</th>
+            <th>Tutor Username</th>
+            <th>Subject</th>
+            <th>Session Time</th>
+            <th>Status</th>
+            </thead>
+            <tbody ng-repeat="sr in studentSessionRequests">
+            <tr>
+                <td>{{sr.requestDate}}</td>
+                <td>{{sr.tutorUsername}}</td>
+                <td>{{sr.subject}}</td>
+                <td>{{sr.time}}</td>
+                <td>{{sr.status}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

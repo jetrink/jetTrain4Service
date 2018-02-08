@@ -1,0 +1,17 @@
+# editors and IDEs
+.idea
+*.ipr
+*.iws
+*.iml
+.vscode
+
+# node js
+node_modules
+
+# stupid macs
+.DS_Store
+
+# project related
+tmp
+dist
+

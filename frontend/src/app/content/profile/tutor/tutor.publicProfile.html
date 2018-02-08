@@ -1,0 +1,52 @@
+<div>
+    <a ui-sref="app.account.profile.list">
+        <h5> &#60;&#60; Profiles</h5>
+    </a>
+</div>
+
+<div class="card card-profile">
+    <div class="card-avatar">
+        <a href="#pablo">
+            <img class="img" src="https://image.freepik.com/free-icon/user-profile-icon_318-33925.jpg"/>
+        </a>
+    </div>
+    <div class="content">
+        <h6 class="category text-gray">Tutor</h6>
+        <h4 class="card-title">{{tutor.firstName}} {{tutor.lastName}} </h4>
+        <div class="card-content">
+            <form>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                <label>City: {{tutor.city}}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                <label>State: {{tutor.state}}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                <label>Country: {{tutor.country}}</label>
+                            </div>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div>
+                        <div class="form-group label-floating">
+                            <label>subject:{{tutor.subject}}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div>
+                        <div class="form-group label-floating">
+                            <label>schedule: {{tutor.schedule}}</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+

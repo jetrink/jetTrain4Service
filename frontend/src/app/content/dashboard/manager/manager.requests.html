@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-header" data-background-color="blue">
+        <h4 class="title"><i class="fa fa-calendar" aria-hidden="true"></i>
+            My Students' Requests</h4>
+    </div>
+    <div class="card-content table-responsive">
+        <div layout="row">
+            <md-input-container flex="30">
+                <label>Students</label>
+                <md-select ng-model="student" ng-change="getRequest(student)" required>
+                    <md-option ng-repeat="s in students" ng-value="s.id">
+                        {{s.person.firstName}} {{s.person.lastName}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+
+        <h4>{{errorMsg}}</h4>
+        <table class="table table-responsive">
+            <thead class="text-primary">
+            <th>Request Submission Date</th>
+            <th>Tutor Username</th>
+            <th>Subject</th>
+            <th>Session Time</th>
+            <th>Status</th>
+            </thead>
+            <tbody ng-repeat="sr in studentRequests">
+            <tr>
+                <td>{{sr.requestDate}}</td>
+                <td>{{sr.tutorUsername}}</td>
+                <td>{{sr.subject}}</td>
+                <td>{{sr.time}}</td>
+                <td>{{sr.status}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

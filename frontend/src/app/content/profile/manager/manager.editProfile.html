@@ -1,0 +1,49 @@
+<div>
+    <a ui-sref="app.account.profile.list">
+        <h5> &#60;&#60; Profiles</h5>
+    </a>
+</div>
+
+<form ng-submit="update()">
+    <div layout="row">
+        <md-input-container flex="50">
+            <label>First Name</label>
+            <input type="text" ng-model="manager.firstName" required>
+        </md-input-container>
+        <md-input-container flex="50">
+        <md-input-container flex="50">
+            <label>Last Name</label>
+            <input type="text" ng-model="manager.lastName" required>
+        </md-input-container>
+    </div>
+    <div layout="row">
+        <md-input-container flex="25">
+            <label>Street Address</label>
+            <input type="text" ng-model="manager.streetAddress" required>
+        </md-input-container>
+        <md-input-container flex="25">
+            <label>City</label>
+            <input type="text" ng-model="manager.city" required>
+        </md-input-container>
+        <md-input-container flex="25">
+            <select class="form-control" ng-model="manager.state" required>
+                <option value="">Select state</option>
+                <option value="{{s}}" ng-repeat="s in states">{{s}}</option>
+            </select>
+        </md-input-container>
+        <md-input-container flex="25">
+            <label>Postal Code</label>
+            <input type="text" ng-model="manager.postalCode" minlength="5" maxlength="5" required>
+        </md-input-container>
+    </div>
+    <div layout="row">
+
+        <md-input-container>
+            <select class="form-control" ng-model="manager.country" pvp-country-picker="name" required>
+                <option value="">Select country</option>
+            </select>
+        </md-input-container>
+
+    </div>
+    <button type="submit" class="btn btn-secondary pull-right" data-background-color="red">Update Profile</button>
+</form>

@@ -1,0 +1,35 @@
+<div layout="row">
+    <md-input-container flex="30">
+        <label>Students</label>
+        <md-select ng-model="student" ng-change="getRequest(student)" required>
+            <md-option ng-repeat="s in parent.students" ng-value="s.id">
+                {{s.person.firstName}} {{s.person.lastName}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+</div>
+
+<div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Tutor</th>
+            <th>Subject</th>
+            <th>StartTime</th>
+            <th>EndTime</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="d in students">
+        <tr>
+            <td>{{d.tutorUsername}}</td>
+            <td>{{d.subject}}</td>
+            <td>{{d.startDate}}</td>
+            <td>{{d.endDate}}</td>
+            <td>{{d.description}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+

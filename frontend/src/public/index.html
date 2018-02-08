@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="Teach4Service" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teach4Service</title>
+
+    <!-- Material Design fonts and icons -->
+    <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- material dashboard stuff -->
+    <script src="main_layout_libs/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="main_layout_libs/Bootstrap/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="main_layout_libs/Bootstrap/bootstrap.min.css">
+    <script src="main_layout_libs/perfect-scrollbar.jquery.min.js"></script>
+    <script src="main_layout_libs/material.min.js"></script>
+    <script src="main_layout_libs/material-dashboard.js"></script>
+    <script src="main_layout_libs/popper.min.js"></script>
+
+    <!-- TODO: FAVICON -->
+    <!-- <link rel="icon" type="image/x-icon" href="/img/favicon.ico"> -->
+</head>
+<body ng-app="Teach4Service">
+<div>
+    <md-toolbar ng-if="!('app.account'|includedByState) && !('app.session'|includedByState)">
+        <div class="md-toolbar-tools">
+
+            <a ui-sref="app.auth">
+                <img src="./images/logo-transparent.png" height="50" width="100" title="T4S logo"/></a>
+            </a>
+            <md-button ui-sref="app.admin.login" ng-if="'app.auth'|includedByState">
+                Admin Login
+            </md-button>
+        </div>
+    </md-toolbar>
+</div>
+
+<ui-view></ui-view>
+
+</body>
+</html>

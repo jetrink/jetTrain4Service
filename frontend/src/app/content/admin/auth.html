@@ -1,0 +1,30 @@
+<div class="col-md-2"></div>
+<div class="col-md-8">
+    <md-card flex="flex" flex-gt-sm="50" flex-gt-md="33">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2><span>Admin Login Form</span></h2>
+            </div>
+        </md-toolbar>
+        <md-card-content>
+            <form name="Form" ng-submit="loginAdmin()">
+                <md-input-container class="md-block">
+                    <label>Login</label>
+                    <input type="text" name="username" placeholder="login" ng-model="admin.username" required=""/>
+                    <div ng-messages="Form.email.$error" role="alert" multiple="">
+                        <div ng-message="required" class="my-message">Please enter your username.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="password" ng-model="admin.password" required=""/>
+                    <div ng-messages="Form.password.$error" role="alert" multiple="">
+                        <div ng-message="required" class="my-message">Please enter your password.</div>
+                    </div>
+                </md-input-container>
+                <md-button ng-disabled="!Form.$valid" type="submit" class="md-raised md-primary">Login</md-button>
+            </form>
+        </md-card-content>
+    </md-card>
+</div>
+<div class="col-md-2"></div>

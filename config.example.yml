@@ -1,0 +1,48 @@
+server:
+  # this is important so the API doesnt conflict with hosting the frontend
+  rootPath: /api
+
+database:
+  driverClass: org.mariadb.jdbc.Driver
+  url: jdbc:mariadb://localhost:3306/T4S
+
+  user: T4S
+  password: SomePassword
+
+  maxWaitForConnection: 1s
+  validationQuery: "/* MyService Health Check */ SELECT 1"
+  validationQueryTimeout: 3s
+  minSize: 4
+  maxSize: 16
+  checkConnectionWhileIdle: true
+  evictionInterval: 10s
+
+  properties:
+    characterEncoding: UTF-8
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.MySQLInnoDBDialect
+    hibernate.enable_lazy_load_no_trans: true
+
+logging:
+  level: INFO
+  loggers:
+#    "io.dropwizard": INFO
+#    "org.hibernate.SQL":
+#      level: DEBUG
+    "org.hibernate.engine.internal":
+      level: ERROR
+
+auth:
+  # the key used to encrypt the cookies
+  cookieSecret: SomeSecret
+
+  # number of seconds for an auth session to live. 1 hr by default.
+  cookieAge: 3600
+
+  systemUser:
+    enabled: true
+    password: someAdminPassword
+
+opentok:
+  apiKey: 46010202
+  secret: OPEN_TOK_SECRET
